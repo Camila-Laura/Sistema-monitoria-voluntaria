@@ -1,0 +1,178 @@
+body.com-navbar-fixo {
+    padding-top: 80px;
+}
+
+.titulo-secao h1,
+.titulo-secao p,
+.card h3,
+.aviso h3,
+.aviso p {
+    font-family: "Poppins", sans-serif
+}
+
+.como-funciona{
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.titulo-secao {
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.titulo-secao h1{
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.titulo-secao p{
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 350px); 
+    gap: 60px;
+    justify-content: center;
+    margin: 20px 0 40px 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.card-icon{
+    width: 90px;
+    height: 90px;
+    border-radius: 50px;
+    background-color: #eef8f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.card-icon span{
+    font-size: 45px;
+    color: #2e7d32;
+}
+
+.card-item {
+    width: 100%;
+}
+
+.card h3 {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 0 10px;
+    color: #222;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-texto{
+    text-align: center;
+}
+
+.aviso{
+    margin: 60px auto;
+    padding: 25px;
+    border-radius: 15px;
+    background-color: #f3faf4;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+
+.aviso h3{
+    color: #2e7d32;
+    margin-bottom: 8px;
+}
+
+.aviso p{
+    color: #555;
+}
+
+.aviso-icon{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aviso-icon span{
+    font-size: 35px;
+    color: #2e7d32;
+}
+
+/* ---------------- RESPONSIVO ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .como-funciona {
+        margin: 40px auto;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    body.com-navbar-fixo {
+        padding-top: 150px;
+    }
+
+    .como-funciona {
+        margin: 30px auto;
+        padding: 16px;
+    }
+
+    .titulo-secao h1 {
+        font-size: 1.8rem;
+    }
+
+    .titulo-secao p {
+        font-size: 1rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .aviso {
+        flex-direction: column;
+        text-align: center;
+        margin: 30px auto;
+        padding: 20px;
+    }
+}

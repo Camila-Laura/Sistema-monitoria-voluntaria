@@ -1,32 +1,255 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Administrador</title>
+{% extends 'base.html' %}
+{% block content %}
     <link rel="stylesheet" href="static/CSS/painel_admin.css">
-</head>
-<body>
-    <div class="sidebar">
-        <div class="logo">Painel Admin</div>
-            <a href="{{ url_for('formulario_solicitante') }}">Cadastro Solicitante</a><br>
-            <a href="{{ url_for('tela_cadastro_voluntario') }}">Cadastro Voluntario</a><br>
-            <a href="{{ url_for('tabela_solicitante') }}">Visualizar Dados do Solicitante</a><br>
-            <a href="{{ url_for('tabela_voluntario') }}">Visualizar Dados do Voluntario</a><br>
-            <a href="{{ url_for('tabela_atendimentos') }}">Criar Atendimento</a><br>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+    <div class="grid-container">
+        <!-- cabecalho -->
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></span>
+            </div>
+            
+            <div class="destaque" onclick="InfoAdmin()">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span>Nome do administrador</span>
+
+                <div id="info-admin" style="display:none;">
+                    <p>Nome: </p>
+                    <p>Cargo: </p>
+                    <p>Email: </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- fim cabecalho -->
+
+        <!-- sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span>Painel Administrativo</span>
+                </div>
+            </div>
+
+            <ul class="sidebar-lista">
+                <a class="sidebar-lista-item" href="#" onclick="mostrarInicio()"><span class="material-symbols-outlined icon-dashboard">home</span>Inicio</a>
+                <a class="sidebar-lista-item" href="{{ url_for('formulario_solicitante') }}"><span class="material-symbols-outlined icon-dashboard">person</span>Cadastrar Solicitante</a>
+                <a class="sidebar-lista-item" href="{{ url_for('tela_cadastro_voluntario') }}"><span class="material-symbols-outlined icon-dashboard">person_add</span>Cadastrar Voluntário</a>
+                <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('gerenciar-solicitante')"><span class="material-symbols-outlined icon-dashboard">database</span>Gerenciar Dados do Solicitante</a>
+                <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('gerenciar-voluntario')"><span class="material-symbols-outlined icon-dashboard">database</span>Gerenciar Dados do Voluntário</a>
+                <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('criar-atendimento')"><span class="material-symbols-outlined icon-dashboard">event_note</span>Criar Atendimento</a>
+                <a class="sidebar-lista-item" href="{{url_for('home')}}"><span class="material-symbols-outlined icon-dashboard">arrow_left_alt</span>Voltar</a>
+            </ul>
+        </aside>
+        <!-- fim sidebar -->
+
+        <!-- main -->
+        <div class="cards-dashboard">
+
         </div>
+        <main class="main-container" onclick="classSidebar()">
+            <div class="main-titulo">
+                <p class="font-weight-bold">Bem Vindo!</p>
+            </div>
+
+            <div class="main-cards">
+                <div class="card">
+                    <div class="card-icon icon">
+                        <span class="material-symbols-outlined icon-azul">group</span>
+                    </div>
+                    <div class="card-item">
+                        <p class="text-primeiro">Total de Voluntários</p>
+                    </div>
+                    <span class="text-primeiro font-weight-bold">{{total_voluntarios}}</span>
+                </div>
+
+                <div class="card painel-card">
+                    <div class="card-icon icon-item">
+                        <span class="material-symbols-outlined icon-laranja">description</span>
+                    </div>
+                    
+                    <div class="card-item">
+                        <p class="text-primeiro">Total de Solicitantes</p>
+                    </div>
+                    <span class="text-primeiro font-weight-bold">{{total_solicitantes}}</span>
+                </div>
+
+                <div class="card"> 
+                    <div class="card-icon item-icon">
+                        <span class="material-symbols-outlined icon-verde">language</span>
+                    </div>
+                    <div class="card-item">
+                        <p class="text-primeiro">Total de Conexões</p>
+                    </div>
+                    <span class="text-primeiro font-weight-bold">{{total_conexoes}}</span>
+                </div>
+            </div>
+
+            <div class="card-solicitante painel-card">
+                <h5><span class="material-symbols-outlined icon-temp">schedule</span>Aguardando Agendamentos</h5> 
+                <hr>
+                <div class="card-info painel-card">
+                    {% for s in pendentes %}
+                        <div class="solicitacao">
+                            <p><strong>Nome: </strong>{{ s.nome }}</p>
+                            <p><strong>Matéria: </strong>{{ s.dificuldade }}</p>
+                            <p><strong>Horário: </strong>{{ s.horario_disponivel }}</p> 
+                            <hr>  
+                        </div>
+                    {% endfor %}
+                </div>            
+                {% if not pendentes %}
+                    <p>Nenhum solicitante aguardando agendamento.</p>
+                {% endif %}
+            </div>
+
+            <!------ Seção Consultar Voluntarios e Solicitantes ------>
+            <div id="criar-atendimento" class="secao">
+                <div class="secao-card">
+                    <p class="secao-titulo">Consulta</p>
+                    <div class="row mb-4">
+                        <!-- Tabela Voluntários -->
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Voluntários Disponíveis</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm tabela-consulta">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Matéria</th>
+                                            <th>Data Inicial</th>
+                                            <th>Disponível até</th>
+                                            <th>Dia da semana</th>
+                                            <th>Horário</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabelaVoluntariosConsulta"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tabela Solicitantes -->
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Solicitantes</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm tabela-consulta">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Matéria</th>
+                                            <th>Data inicial</th>
+                                            <th>Dia da semana</th>
+                                            <th>Horário</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabelaSolicitantesConsulta"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Criar Atendimento -->
+                <div class="secao-card"> 
+                    <p class="secao-titulo">Criar Atendimentos</p> 
+                    <div class="card p-4 mb-4 shadow-sm">
+                        <h6 class="fw-bold mb-3">Novo Atendimento</h6>
+                        <div class="row g-3">
+                            <div class="col-md-5">
+                                <label class="form-label fw-semibold">ID do Voluntário</label>
+                                <input type="number" id="voluntario_id" class="form-control" placeholder="Ex: 1">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-semibold">ID do Solicitante</label>
+                                <input type="number" id="solicitante_id" class="form-control" placeholder="Ex: 1">
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button onclick="criarAtendimento()" class="btn btn-primary w-100">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção Atendimentos Cadastrados -->
+                <div class="secao-card">
+                    <div class="table-responsive">
+                        <p class="secao-titulo">Atendimentos Cadastrados</p>
+                        <table class="table table-bordered table-hover" id="tabelaAtendimentos">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Voluntário</th>
+                                    <th>Solicitante</th>
+                                    <th>satus</th>
+                                    <th>Operações</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção Tabela para Exibir Dados do Solicitante -->
+            <div id="gerenciar-solicitante" class="secao" style="display:none;">
+                <div class="secao-card">
+                    <p class="secao-titulo">Lista de Solicitantes</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered table-sm" id="tabelaSolicitante">
+                            <thead class="table-primary border">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Matéria</th>
+                                    <th>Data inicial</th>
+                                    <th>Dia da semana</th>
+                                    <th>Horário</th>
+                                    <th>Email</th>
+                                    <th>Operações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção Tabela para Exibir Dados do Voluntario -->
+            <div id="gerenciar-voluntario" class="secao" style="display:none;">
+                <div class="secao-card">
+                    <p class="secao-titulo">Lista de Voluntários</p>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered table-sm" id="tabelaVoluntarios">
+                            <thead class="table-success border">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Matéria</th>
+                                    <th>Horário</th>
+                                    <th>Data inicial</th>
+                                    <th>Disponivel até</th>
+                                    <th>Dia da semana</th>
+                                    <th>E-mail</th>
+                                    <th>Operações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- main -->
     </div>
 
-    <div class="topbar d-flex align-items-center justify-content-between">
-        <span class="painel">Painel do Administrador</span>
-    </div>
-
-    <div class="main">
-        <span>Bem-vindo, Admin</span>
-        <div class="anotacoes">
-            <h3>Faça suas Anotações</h3> 
-            <input type="text" placeholder="Anotações">
-        </div>
-    </div> 
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="{{ url_for('static', filename='JS/tabela_atendimento.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{url_for('static', filename='JS/script.js')}}"></script>
+{% endblock %}

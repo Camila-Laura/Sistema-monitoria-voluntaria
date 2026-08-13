@@ -1,0 +1,74 @@
+body.com-navbar-fixo {
+    padding-top: 80px;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.login {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f0faf3;
+}
+
+.form-container {
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    background-color: #fff;
+    min-height: 400px;  
+}
+
+.form-container h2,
+.form-container label,
+.form-container button {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.btn-button {
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 100, 0.12)
+}
+
+.btn-button:hover{
+    background-color: rgb(2, 156, 2);
+}
+
+/* ---------------- RESPONSIVO ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .form-container {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    body.com-navbar-fixo {
+        padding-top: 150px;
+    }
+
+    .login {
+        padding: 20px 12px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 24px !important;
+        min-height: auto;
+    }
+}

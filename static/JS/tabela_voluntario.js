@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", carregarVoluntarios);
-
 function carregarVoluntarios() {
     fetch("/voluntarios")
     .then(response => {
@@ -24,6 +22,7 @@ function carregarVoluntarios() {
                     <td>${v.id}</td>
                     <td>${v.nome}</td>
                     <td>${v.disponibilidade}</td>
+                    <td>${v.data}</td>
                     <td>${v.tipo_apoio}</td>
                     <td>${v.email}</td>
                     <td>
@@ -48,6 +47,7 @@ function listarDados(id) {
             "ID: " + v.id +
             "\nNome: " + v.nome +
             "\nDisponibilidade: " + v.disponibilidade +
+            "\nData: " + v.data +
             "\nTipo de Apoio: " + v.tipo_apoio +
             "\nEmail: " + v.email
         );

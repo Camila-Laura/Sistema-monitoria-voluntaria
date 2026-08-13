@@ -1,0 +1,80 @@
+body.com-navbar-fixo {
+    padding-top: 80px;
+}
+
+.formulario-container{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f0faf3;
+}
+
+.container-form h2, 
+.form-group label, 
+button{
+    font-family: "Poppins", sans-serif;
+}
+
+.form{
+    background-color: #ffff; 
+    box-shadow: 0 4px 20px rgba(0, 0, 100, 0.12)
+}
+
+.container-form {
+    width: 100%;
+    max-width: 630px;
+    margin: 0 auto;
+}
+  
+.texto-form{
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #333333;
+}
+
+.btn-button {
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 100, 0.12)
+}
+
+.btn-button:hover{
+    background-color: rgb(31, 146, 31);
+}
+
+/* ---------------- RESPONSIVO ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .container-form {
+        max-width: 480px;
+        padding: 0 20px;
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    body.com-navbar-fixo {
+        padding-top: 150px;
+    }
+
+    .formulario-container {
+        padding: 20px 12px;
+    }
+
+    .container-form {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .form-container {
+        padding: 20px !important;
+    }
+}

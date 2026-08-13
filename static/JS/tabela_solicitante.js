@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", carregarSolicitante);
-
 function carregarSolicitante() {
     fetch("/admin/solicitante")
     .then(response => {
@@ -24,6 +22,7 @@ function carregarSolicitante() {
                     <td>${v.id}</td>
                     <td>${v.nome}</td>
                     <td>${v.dificuldade}</td>
+                    <td>${v.data}</td>
                     <td>${v.horario_disponivel}</td>
                     <td>${v.email}</td>
                     <td>
@@ -48,6 +47,7 @@ function listarDados(id) {
             "ID: " + s.id +
             "\nNome: " + s.nome +
             "\nDificuldade: " + s.dificuldade +
+            "\nData: " + s.data +
             "\nHorário Disponivel: " + s.horario_disponivel +
             "\nEmail: " + s.email
         );

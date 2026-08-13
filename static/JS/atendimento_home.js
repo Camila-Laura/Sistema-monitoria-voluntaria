@@ -8,7 +8,7 @@ function carregarAtendimentos() {
         tbody.innerHTML = "";
 
         if (data.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='3' class='text-center'>Nenhum atendimento cadastrado.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='4' class='text-center'>Nenhum atendimento cadastrado.</td></tr>";
             return;
         }
 
@@ -18,6 +18,8 @@ function carregarAtendimentos() {
                     <td>${a.id}</td>
                     <td>${a.voluntario_nome}</td>
                     <td>${a.solicitante_nome}</td>
+                    <td>${a.dias_disponivel}</td>
+                    <td>${a.status}</td>
                 </tr>
             `;
         });

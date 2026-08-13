@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+{% extends 'base.html' %}
+{% block content %}
     <link rel="stylesheet" href="static/CSS/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     
-</head>
-<body>
-    <!-- Cabecalho do site -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <h1 class="logo">APOIO <span>EDUCACIONAL</span></h1>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -22,132 +16,98 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2 active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link mx-lg-2 active fw-bold" aria-current="page" href="{{url_for('home')}}">Inicio</a>
                     </li>
                 
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="#">Monitorias</a>
+                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('tela_cadastro_voluntario')}}">Ser Voluntário</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="#">Voluntariados</a>
+                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('formulario_solicitante')}}">Solicitante</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link mx-lg-2" href="#">Contato</a>
+                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('como_funciona')}}">Como Funciona</a>
                     </li>
                 </ul> 
+                    
             </div>
+            <a class="nav-link mx-lg-2 fw-bold" href="{{url_for('tela_login')}}">Área Admin</a>
         </div>
     </nav>
 
-    
     <section class="hero">
         <div class="hero-left">
             <h1>Aprenda mais.<br>Ensine <em>com propósito.</em></h1>
-            <p>Conectamos alunos que precisam de apoio com voluntários dispostos a compartilhar conhecimento. Juntos, transformamos a educação.</p>
+            <p>Conectamos alunos que precisam de apoio com voluntários dispostos a compartilhar conhecimento.</p>
         </div>
         <div class="hero-right">
             <div class="hero-cards">
-            <div class="hero-stat-card">
-                <div class="hero-stat-icon">🎓</div>
-                <div>
-                <div class="hero-stat-num"></div>
-                <div class="hero-stat-label">Voluntários ativos esta semana</div>
+                <div class="hero-stat-card">
+                    <div class="hero-stat-icon">🎓</div>
+                    <div>
+                    <div class="hero-stat-num"></div>
+                    <div class="hero-stat-label">Total de Voluntários Cadastrados</div>
+                    <span class="font-weight-bold">{{total_voluntarios}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-stat-card">
-                <div class="hero-stat-icon">📚</div>
-                <div>
-                <div class="hero-stat-num"></div>
-                <div class="hero-stat-label">Monitorias disponíveis hoje</div>
+                <div class="hero-stat-card">
+                    <div class="hero-stat-icon">📚</div>
+                    <div>
+                    <div class="hero-stat-num"></div>
+                    <div class="hero-stat-label">Total de Solictantes</div>
+                    <span class="font-weight-bold">{{total_solicitantes}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-stat-card">
-                <div class="hero-stat-icon">⭐</div>
-                <div>
-                <div class="hero-stat-num"></div>
-                <div class="hero-stat-label">Avaliação média dos alunos</div>
+                <div class="hero-stat-card">
+                    <div class="hero-stat-icon">⭐</div>
+                    <div>
+                    <div class="hero-stat-num"></div>
+                    <div class="hero-stat-label">Total de Conexões Realizadas</div>
+                    <span class="font-weight-bold">{{total_conexoes}}</span>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>
 
     <!-- Tabela para exibir os atendimentos cadastrados -->
     <section class="monitoria-section">
-        <div  class="section-title">
-            <h2>Veja as conexões já <br>realizadas na plataforma 💚</h2>
+        <div class="section-title">
+            <h2>Veja as conexões já <br>realizadas na plataforma <span class="material-symbols-outlined">handshake</span></h2>
         </div>
-        <div class="container mt-5">
-            <h3 class="fw-bold mb-3 pt-5 text-center">Registros de Conexões</h3>
-            <div class="row justify-content-center">
-                <div class="table-responsive col-7">
-                    <table class="table table-bordered table-hover" id="tabelaAtendimentos">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Voluntário</th>
-                                <th>Solicitante</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        
+        <table class="content-table " id="tabelaAtendimentos">
+            <thead>
+                <tr>
+                    <th colspan="5" class="table-titulo">
+                        <span class="material-symbols-outlined">group</span> Registros de Conexões
+                    </th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Voluntário</th>
+                    <th>Solicitante</th>
+                    <th>Dia em comum</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </section> 
-    
 
-    <!-- formulario de login -->
-    <div class="container-fluid">
-        <div class="row justify-content-center mt-5">
-            <h2>O Login é apenas para o <br>Administrador do sistema</h2>
-            <section class="col-12 colsm-6 col-md-4 pt-5 pb-5">
-                <form action="" class="form-container">
-                    <h2 class="text-center">Login</h2>
-
-                    <div class="form-group mb-3">
-                        <label for="email" class="form-label fw-semibold">E-mail</label>
-                        <input type="text" id="login" class="form-control">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="senha" class="form-label fw-semibold">Senha</label>
-                        <input type="password" id="senha" class="form-control">
-                    </div>
-
-                    <div class="form-group form-check mb-3">
-                        <input type="checkbox" class="form-check-input">
-                        <label for="" class="form-check-label fw-semibold">Lembrar-me</label>
-                    </div>
-
-                    <button onclick="Login()" class="btn btn-primary btn-block fw-bold w-100">Login</button><br>
-                    
-                    <!-- verificação para vê se já tem administrador cadastrado  no sistema. Caso não tenha vai exibir a opção de criar conta -->
-                    {% if not admin_existente %}
-                        <p>Ainda não tem cadastro?</p>
-                        <a href="{{ url_for('formulario_admin') }}">Criar Conta Administrador</a>
-                    {% endif %}
-                </form>
-            </section>
-        </div>
-    </div>
-    
     <footer>
         <div class="footer-top">
             <div>
             <div class="footer-logo">Apoio<span>Edu</span></div>
-            <p class="footer-tagline"><span class="footer-dot"></span>Voluntariado escolar ativo</p>
         </div>
         <div class="footer-bottom">
             <p>© 2026 ApoioEdu · Todos os direitos reservados</p>
-            <p>Feito com 💚 para a educação</p>
         </div>
     </footer>
 
 <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
 <script src="{{ url_for('static', filename='JS/atendimento_home.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

@@ -2,35 +2,35 @@ body.com-navbar-fixo {
     padding-top: 80px;
 }
 
-body {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-}
-
-.login {
+.formulario-container{
     flex: 1;
     display: flex;
     align-items: center;
     background-color: #f0faf3;
+    margin-top: 50px;
 }
 
-.form-container {
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
-    background-color: #fff;
-    min-height: 400px;  
+.container-form h2, 
+.form-group label, 
+button{
+    font-family: "Poppins", sans-serif;
 }
 
-.form-container h2,
-.form-container label,
-.form-container button {
-    font-family: "Poppins", sans-serif !important;
+.form{
+    background-color: #ffff; 
+    box-shadow: 0 4px 20px rgba(0, 0, 100, 0.12)
 }
 
-.btn-button{
-    margin-top: 15px;
+.container-form {
+    width: 100%;
+    max-width: 630px;
+    margin: 0 auto;
+}
+  
+.texto-form{
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #333333;
 }
 
 .btn-button {
@@ -47,16 +47,20 @@ body {
 }
 
 .btn-button:hover{
-    background-color: rgb(2, 156, 2);
+    background-color: rgb(31, 146, 31);
+}
+
+.btn-sair{
+    margin-left: 30px;
 }
 
 /* ---------------- RESPONSIVO ---------------- */
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .form-container {
-        max-width: 420px;
-        margin: 0 auto;
+    .container-form {
+        max-width: 480px;
+        padding: 0 20px;
     }
 }
 
@@ -66,13 +70,16 @@ body {
         padding-top: 150px;
     }
 
-    .login {
+    .formulario-container {
         padding: 20px 12px;
     }
 
-    .form-container {
+    .container-form {
         max-width: 100%;
-        padding: 24px !important;
-        min-height: auto;
+        padding: 0;
+    }
+
+    .form-container {
+        padding: 20px !important;
     }
 }

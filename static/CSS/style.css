@@ -368,6 +368,24 @@ footer {
 
 /* ---------------- RESPONSIVO ---------------- */
 
+.menu-icon-home {
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    .menu-icon-home {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .offcanvas.offcanvas-end {
+        width: 260px;
+    }
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
     .hero {
@@ -378,6 +396,11 @@ footer {
     .hero-left {
         padding: 60px 40px;
     }
+
+    /* .menu-icon-home {
+    display: inline-flex;
+    align-items: center;
+    } */
 
     .hero h1 {
         font-size: 42px;
@@ -412,6 +435,10 @@ footer {
         height: auto;
         padding: 10px 20px;
     }
+
+    /* .offcanvas.offcanvas-end {
+    width: 260px;
+    } */
 
     .logo {
         font-size: 20px;

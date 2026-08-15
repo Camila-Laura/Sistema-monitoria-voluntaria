@@ -397,3 +397,17 @@ function InfoAdmin() {
     const info = document.getElementById('info-admin');
     info.style.display = info.style.display === 'none' ? 'block' : 'none';
 }
+
+
+function DeletarAdmin() {
+    if (!confirm("Tem certeza que deseja deletar sua conta?")) return;
+
+    fetch("/api/admin/me", {
+        method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        window.location.href = "/login"; // manda pra tela de login
+    });
+}

@@ -8,7 +8,7 @@ function carregarAtendimentos() {
         tbody.innerHTML = "";
 
         if (data.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='4' class='text-center'>Nenhum atendimento cadastrado.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='5' class='text-center'>Nenhum atendimento cadastrado.</td></tr>";
             return;
         }
 

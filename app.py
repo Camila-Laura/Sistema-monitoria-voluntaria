@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session
 from datetime import datetime
-from flask_login import login_required, logout_user, login_user
+from flask_login import login_required, logout_user, login_user, current_user
 from flask import abort
 from flask_cors import CORS
 from sqlalchemy import create_engine
@@ -158,6 +158,22 @@ def criar_admin():
     except Exception as e:
         db_session.rollback()
         return jsonify({"erro": f"Erro ao criar administrador: {str(e)}"}), 500
+
+# ------------------------- Deletar Conta do Admin ----------------------------------------------
+
+@app.route("/api/admin/me", methods=["DELETE"])
+@login_required
+def deletar_conta_admin():
+    a = db_session.query(Administrador).get(current_user.id)
+    if not a:
+        return jsonify({"erro": "Administrador não encontrado"}), 404
+
+    db_session.delete(a)
+    db_session.commit()
+    logout_user()
+
+    return jsonify({"message": "Conta do administrador deletada!"})
+
 
 #------------------------ Rotas do Solicitante ----------------------------------------
 # ------------------------- Criar solicitante ----------------------------------------

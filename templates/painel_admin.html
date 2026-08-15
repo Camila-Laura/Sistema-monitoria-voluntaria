@@ -15,14 +15,15 @@
             
             <div class="destaque" onclick="InfoAdmin()">
                 <span class="material-symbols-outlined">account_circle</span>
-                <span>Nome do administrador</span>
+                <span>{{current_user.nome}}</span>
 
                 <div id="info-admin" style="display:none;">
-                    <p>Nome: </p>
-                    <p>Cargo: </p>
-                    <p>Email: </p>
+                    <p>Nome: {{current_user.nome}}</p>
+                    <p>Cargo: {{current_user.cargo}}</p>
+                    <p>Email: {{current_user.email}}</p>
                 </div>
             </div>
+            <button type="button" onclick="DeletarAdmin()" class="btn btn-danger ms-5">Sair</button>
         </header>
 
         <!-- fim cabecalho -->
@@ -41,7 +42,7 @@
                 <a class="sidebar-lista-item" href="{{ url_for('tela_cadastro_voluntario') }}"><span class="material-symbols-outlined icon-dashboard">person_add</span>Cadastrar Voluntário</a>
                 <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('gerenciar-solicitante')"><span class="material-symbols-outlined icon-dashboard">database</span>Gerenciar Dados do Solicitante</a>
                 <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('gerenciar-voluntario')"><span class="material-symbols-outlined icon-dashboard">database</span>Gerenciar Dados do Voluntário</a>
-                <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('criar-atendimento')"><span class="material-symbols-outlined icon-dashboard">event_note</span>Criar Atendimento</a>
+                <a class="sidebar-lista-item" href="#" onclick="mostrarSecao('criar-atendimento')"><span class="material-symbols-outlined icon-dashboard">event_note</span>Criar Agendamento</a>
                 <a class="sidebar-lista-item" href="{{url_for('home')}}"><span class="material-symbols-outlined icon-dashboard">arrow_left_alt</span>Voltar</a>
             </ul>
         </aside>
@@ -155,11 +156,11 @@
                     </div>
                 </div>
 
-                <!-- Seção Criar Atendimento -->
+                <!-- Seção Criar Agendamento -->
                 <div class="secao-card"> 
-                    <p class="secao-titulo">Criar Atendimentos</p> 
+                    <p class="secao-titulo">Criar Agendamento</p> 
                     <div class="card p-4 mb-4 shadow-sm">
-                        <h6 class="fw-bold mb-3">Novo Atendimento</h6>
+                        <h6 class="fw-bold mb-3">Novo Agendamento</h6>
                         <div class="row g-3">
                             <div class="col-md-5">
                                 <label class="form-label fw-semibold">ID do Voluntário</label>
@@ -179,7 +180,7 @@
                 <!-- Seção Atendimentos Cadastrados -->
                 <div class="secao-card">
                     <div class="table-responsive">
-                        <p class="secao-titulo">Atendimentos Cadastrados</p>
+                        <p class="secao-titulo">Agendamentos Cadastrados</p>
                         <table class="table table-bordered table-hover" id="tabelaAtendimentos">
                             <thead class="table-dark">
                                 <tr>

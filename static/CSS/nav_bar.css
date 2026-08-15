@@ -34,6 +34,18 @@ body.com-navbar-fixo {
 li a {
     font-family: 'Fraunces', serif; 
 }
+.menu-icon-home {
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    .menu-icon-home {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
 
 /* Tablet */
 @media (max-width: 1024px) {
@@ -72,6 +84,10 @@ li a {
     .offcanvas-body {
         width: 100%;
         padding: 0 12px;
+    }
+
+    .offcanvas.offcanvas-end {
+        width: 260px;
     }
 
     .navbar-nav {

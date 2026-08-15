@@ -8,32 +8,41 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <h1 class="logo">APOIO <span>EDUCACIONAL</span></h1>
+
+            <div class="menu-icon-home" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" role="button" aria-label="Toggle navigation">
+                <span class="material-symbols-outlined">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+                    </svg>
+                </span>
+            </div>
+
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link mx-lg-2 active fw-bold" aria-current="page" href="{{url_for('home')}}">Inicio</a>
-                    </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('tela_cadastro_voluntario')}}">Ser Voluntário</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('formulario_solicitante')}}">Solicitante</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('como_funciona')}}">Como Funciona</a>
-                    </li>
-                </ul> 
-                    
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link mx-lg-2 active fw-bold" aria-current="page" href="{{url_for('home')}}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('tela_cadastro_voluntario')}}">Ser Voluntário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('formulario_solicitante')}}">Solicitante</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('como_funciona')}}">Como Funciona</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2 active fw-bold" href="{{url_for('tela_login')}}">Área Admin</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <a class="nav-link mx-lg-2 fw-bold" href="{{url_for('tela_login')}}">Área Admin</a>
         </div>
     </nav>
 

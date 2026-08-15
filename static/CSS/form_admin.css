@@ -1,12 +1,12 @@
 body.com-navbar-fixo {
     padding-top: 80px;
+    background-color: #f0faf3;
 }
 
 .formulario-container{
     flex: 1;
     display: flex;
     align-items: center;
-    background-color: #f0faf3;
     margin-top: 50px;
 }
 
@@ -50,9 +50,6 @@ button{
     background-color: rgb(31, 146, 31);
 }
 
-.btn-sair{
-    margin-left: 30px;
-}
 
 /* ---------------- RESPONSIVO ---------------- */
 

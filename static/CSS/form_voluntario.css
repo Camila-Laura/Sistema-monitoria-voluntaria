@@ -1,12 +1,12 @@
 body.com-navbar-fixo {
     padding-top: 80px;
+    background-color: #f0faf3;
 }
 
 .formulario-container{
     flex: 1;
     display: flex;
     align-items: center;
-    background-color: #f0faf3;
 }
 
 .container-form h2, 
